@@ -3,9 +3,10 @@ import React, {useEffect, useState} from 'react'
 import { PokeList } from '../containers/PokeList'
 import { getPokemons} from '../api/getPokemons'
 
-export const Home = () => {
+export const Home = ({pokemons, setPokemons}) => {
 
-    const [pokemons, setPokemons] = useState([])
+  //Replaced by redux, in the props
+   // const [pokemons, setPokemons] = useState([])
 
     useEffect(() => {
       const fetchPokemons = async() => {
