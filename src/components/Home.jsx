@@ -1,6 +1,20 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+
+import { PokeList } from '../containers/PokeList'
+import { getPokemons} from '../api/getPokemons'
 
 export const Home = () => {
+
+    const [pokemons, setPokemons] = useState([])
+
+    useEffect(() => {
+      const fetchPokemons = async() => {
+        const fetchedPokemons = await getPokemons()
+        setPokemons(fetchedPokemons)
+      }
+      fetchPokemons()
+      console.log(pokemons);
+    }, []);
   return (
     <>
             <div className='flex pt-20 items-center'>
@@ -15,7 +29,7 @@ export const Home = () => {
                 />
                 {/* <BsSearch size={24} /> */}
             </div>
-            {/* <PokemonList pokemons={pokemons} /> */}
+            <PokeList  pokemons={pokemons}/>
         </>
   )
 }

@@ -1,8 +1,10 @@
+import { AiFillStar, AiOutlineStar} from 'react-icons/ai'
 
-export const PokemonCard = ({name}) => {
+export const PokemonCard = ({name, url}) => {
   return (
-    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-green-100'>
-        <img className='w-full' src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" alt="pikachu" />
+    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-green-100 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110 duration-75'>
+      <button>{false ? <AiFillStar size={24} color={'golden'}/> : <AiOutlineStar size={24} />} </button>
+        <img className='w-full' src={url} alt="pikachu" />
         <div className='font-bold text-lx mb-2 ml-4'>
             {name.toLocaleUpperCase()}
         </div>
@@ -15,6 +17,7 @@ export const PokemonCard = ({name}) => {
               className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 font-semibold mr-2 mb-2'
                 >Beautiful
               </span>
+            
         </div>
     </div>
   )
