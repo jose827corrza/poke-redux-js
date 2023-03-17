@@ -1,17 +1,25 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
+import { useDispatch, useSelector} from 'react-redux'
 
 import { PokeList } from '../containers/PokeList'
-import { getPokemons} from '../api/getPokemons'
+import { getPokemons, getPokemonDetails} from '../api/getPokemons'
+import { setPokemons} from '../actions'
 
-export const Home = ({pokemons, setPokemons}) => {
+export const Home = () => {
 
   //Replaced by redux, in the props
    // const [pokemons, setPokemons] = useState([])
 
+  const pokemons = useSelector(state => state.pokemons)
+  const dispatch = useDispatch()
+
     useEffect(() => {
       const fetchPokemons = async() => {
         const fetchedPokemons = await getPokemons()
-        setPokemons(fetchedPokemons)
+        const pokemonsDetailed = await Promise.all(fetchedPokemons.map(pokemon => 
+          getPokemonDetails(pokemon)))
+        // dispatch(setPokemons(fetchedPokemons))
+        dispatch(setPokemons(pokemonsDetailed)) // With everything
       }
       fetchPokemons()
       console.log(pokemons);

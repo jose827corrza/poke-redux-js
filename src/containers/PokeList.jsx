@@ -13,7 +13,7 @@ export const PokeList = ({pokemons}) => {
     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 place-items-center gap-5 py-3'>
         {
           pokemons.map((pokemon) => {
-            return <PokemonCard name={pokemon.name} key={pokemon.url} url={pokemon.url}/>
+            return <PokemonCard name={pokemon.name} key={pokemon.name} url={pokemon.sprites.other.dream_world.front_default} />
           })
         }
         
